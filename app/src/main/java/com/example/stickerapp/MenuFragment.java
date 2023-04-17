@@ -17,6 +17,7 @@ public class MenuFragment extends Fragment {
     private Button logStickerButton;
     private Button mapButton;
     private Button safetyInfoButton;
+    private Button test;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class MenuFragment extends Fragment {
         mapButton = v.findViewById(R.id.mapButton);
         crewButton = v.findViewById(R.id.crewButton);
         safetyInfoButton = v.findViewById(R.id.safetyInfoButton);
+        test = v.findViewById(R.id.test);
 
         logStickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
