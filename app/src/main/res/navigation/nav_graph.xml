@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/menuFragment">
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.stickerapp.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_safetyFragment"
+            app:destination="@id/safetyFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_crewFragment"
+            app:destination="@id/crewFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_loggingFragment"
+            app:destination="@id/loggingFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/safetyFragment"
+        android:name="com.example.stickerapp.SafetyFragment"
+        android:label="fragment_safety"
+        tools:layout="@layout/fragment_safety" />
+    <fragment
+        android:id="@+id/crewFragment"
+        android:name="com.example.stickerapp.CrewFragment"
+        android:label="fragment_crew"
+        tools:layout="@layout/fragment_crew" />
+    <fragment
+        android:id="@+id/loggingFragment"
+        android:name="com.example.stickerapp.LoggingFragment"
+        android:label="fragment_logging"
+        tools:layout="@layout/fragment_logging" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.stickerapp.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" />
+</navigation>
