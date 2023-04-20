@@ -60,13 +60,13 @@ public class MapFragment extends Fragment {
 
     public void setAllPins(GoogleMap googleMap) {
         LatLng icecreamSticker = new LatLng(55.660505, 12.591268);
-        googleMap.addMarker(new MarkerOptions().position(icecreamSticker).title("A removed sticker").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
+        googleMap.addMarker(new MarkerOptions().position(icecreamSticker).title("A removed sticker").snippet("Removed on April 20th 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)).alpha(0.6f));
 
         LatLng metroSticker = new LatLng(55.655954,12.589270);
-        googleMap.addMarker(new MarkerOptions().position(metroSticker).title("A removed sticker").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)));
+        googleMap.addMarker(new MarkerOptions().position(metroSticker).title("A removed sticker").snippet("Removed on February 3rd 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)).alpha(0.6f));
 
         LatLng jurSticker = new LatLng(55.661571,12.586713);
-        googleMap.addMarker(new MarkerOptions().position(jurSticker).title("A sticker").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+        googleMap.addMarker(new MarkerOptions().position(jurSticker).title("A sticker").snippet("Please help remove this sticker if you can.").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
     }
 
     public void placePin(GoogleMap googleMap, double lat, double lng, String title, String colour) {
