@@ -20,6 +20,8 @@ public class MapFragment extends Fragment {
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
+        String apiKey = BuildConfig.API_KEY;
+
         /**
          * Manipulates the map once available.
          * This callback is triggered when the map is ready to be used.
