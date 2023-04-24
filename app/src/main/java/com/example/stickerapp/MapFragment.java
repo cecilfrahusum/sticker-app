@@ -20,6 +20,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.sql.Date;
+
 public class MapFragment  extends Fragment
 {
 
@@ -51,7 +53,7 @@ public class MapFragment  extends Fragment
             } else {
                 // TODO: A toast saying they can interact with map without location turned on.
             }
-            setAllPins(googleMap);
+            setAllMarkers(googleMap);
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPos, 15));
             // TODO: Later, change startPos to be the current location.
         }
@@ -76,18 +78,27 @@ public class MapFragment  extends Fragment
         }
     }
 
-    public void setAllPins(GoogleMap googleMap) {
+    public void setAllMarkers(GoogleMap googleMap) {
         LatLng icecreamSticker = new LatLng(55.660505, 12.591268);
-        googleMap.addMarker(new MarkerOptions().position(icecreamSticker).title("A removed sticker").snippet("Removed on April 20th 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)).alpha(0.6f));
+        googleMap.addMarker(new MarkerOptions().position(icecreamSticker).title("A removed sticker").snippet("Removed on April 20th 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.6f));
 
         LatLng metroSticker = new LatLng(55.655954,12.589270);
-        googleMap.addMarker(new MarkerOptions().position(metroSticker).title("A removed sticker").snippet("Removed on February 3rd 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE)).alpha(0.6f));
+        googleMap.addMarker(new MarkerOptions().position(metroSticker).title("A removed sticker").snippet("Removed on February 3rd 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.6f));
 
         LatLng jurSticker = new LatLng(55.661571,12.586713);
-        googleMap.addMarker(new MarkerOptions().position(jurSticker).title("A sticker").snippet("Please help remove this sticker if you can.").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+        googleMap.addMarker(new MarkerOptions().position(jurSticker).title("A sticker").snippet("Please help remove this sticker if you can.").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
     }
 
-    public void placePin(GoogleMap googleMap, double lat, double lng, String title, String colour) {
-
+    public void placeMarker(GoogleMap googleMap, double lat, double lng, Date date, boolean removed) {
+        LatLng stickerPos = new LatLng(lat, lng);
+        String title = "A sticker";
+        String snippet = "Please help remove this sticker if you can.";
+        float opacity = 1;
+        if (removed) {
+            title = "A removed sticker";
+            snippet = "Sticker removed on XX date"; //TODO: add actual date
+            opacity = 0.6f;
+        }
+        googleMap.addMarker(new MarkerOptions().position(stickerPos).title(title).snippet(snippet).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(opacity));
     }
 }
