@@ -22,6 +22,8 @@ public class MapFragment extends Fragment {
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         String apiKey = BuildConfig.API_KEY;
+        private static final int REQUEST_PERMISSION = 1;
+        PermissionsHandler permissionsHandler = new PermissionsHandler();
 
         LatLng startPos = new LatLng(55.658619, 12.589548);
 
@@ -35,6 +37,10 @@ public class MapFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
+            permissionsHandler.requestPermissions(getActivity(), REQUEST_PERMISSION);
+            if (permissionsHandler.hasPermissions(getActivity())) {
+                //googleMap.setMyLocationEnabled(true);
+            }
             setAllPins(googleMap);
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPos, 15));
         }
