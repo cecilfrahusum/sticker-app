@@ -70,7 +70,7 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/getLocationButton"
+        android:id="@+id/locationButton"
         app:cornerRadius="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
