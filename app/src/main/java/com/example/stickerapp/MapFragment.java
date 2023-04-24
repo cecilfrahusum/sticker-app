@@ -4,11 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import com.google.android.gms.location.FusedLocationProviderClient;
 
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -17,15 +20,18 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapFragment extends Fragment {
+public class MapFragment  extends Fragment
+{
+
+    String apiKey = BuildConfig.API_KEY;
+    private static final int REQUEST_PERMISSION = 1;
+    PermissionsHandler permissionsHandler = new PermissionsHandler();
+    FusedLocationProviderClient locationClient;
+
+    LatLng startPos = new LatLng(55.658619, 12.589548);
+    //TODO: startPos should be latest known location of the user.
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
-
-        String apiKey = BuildConfig.API_KEY;
-        private static final int REQUEST_PERMISSION = 1;
-        PermissionsHandler permissionsHandler = new PermissionsHandler();
-
-        LatLng startPos = new LatLng(55.658619, 12.589548);
 
         /**
          * Manipulates the map once available.
@@ -35,14 +41,19 @@ public class MapFragment extends Fragment {
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
          */
+
+        @SuppressLint("MissingPermission")
         @Override
         public void onMapReady(GoogleMap googleMap) {
             permissionsHandler.requestPermissions(getActivity(), REQUEST_PERMISSION);
             if (permissionsHandler.hasPermissions(getActivity())) {
-                //googleMap.setMyLocationEnabled(true);
+                googleMap.setMyLocationEnabled(true);
+            } else {
+                // TODO: A toast saying they can interact with map without location turned on.
             }
             setAllPins(googleMap);
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPos, 15));
+            // TODO: Later, change startPos to be the current location.
         }
     };
 
@@ -51,6 +62,7 @@ public class MapFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        locationClient = LocationServices.getFusedLocationProviderClient(getActivity());
         return inflater.inflate(R.layout.fragment_map, container, false);
     }
 
