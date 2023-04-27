@@ -11,7 +11,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
         android:textSize="20sp"
-        android:text="Your crew has removed:" />
+        android:text="Your crew \n'ITU anti-fascist sticker patrol'\nhas removed:"
+        android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/counter"
