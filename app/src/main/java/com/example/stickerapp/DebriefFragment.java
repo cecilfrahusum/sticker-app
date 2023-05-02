@@ -9,9 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class DebriefFragment extends Fragment {
 
+    public TextView debriefText;
     public Button homeButton;
 
     @Override
@@ -24,6 +26,8 @@ public class DebriefFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_debrief, container, false);
 
+
+        debriefText = v.findViewById(R.id.debriefText);
         homeButton = v.findViewById(R.id.homeButton);
 
         homeButton.setOnClickListener(new View.OnClickListener() {

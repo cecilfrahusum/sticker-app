@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DebriefFragment">
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/debriefText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="50dp"
+        android:textSize="20sp"
+        android:text="Take a deep breath.\nIf you want, you can go for a walk around the area to check for more stickers.\nYou got this."
+        android:textAlignment="center" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/homeButton"
@@ -12,7 +22,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Back to menu"/>
+        android:text="I did it!"/>
 
-
-</FrameLayout>
+</LinearLayout>
