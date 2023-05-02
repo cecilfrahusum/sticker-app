@@ -28,10 +28,9 @@ public class MapFragment  extends Fragment
     String apiKey = BuildConfig.API_KEY;
     private static final int REQUEST_PERMISSION = 1;
     PermissionsHandler permissionsHandler = new PermissionsHandler();
-    FusedLocationProviderClient locationClient;
+    //FusedLocationProviderClient locationClient;
 
     LatLng startPos = new LatLng(55.658619, 12.589548);
-    //TODO: startPos should be latest known location of the user.
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -49,13 +48,12 @@ public class MapFragment  extends Fragment
         public void onMapReady(GoogleMap googleMap) {
             permissionsHandler.requestPermissions(getActivity(), REQUEST_PERMISSION);
             if (permissionsHandler.hasPermissions(getActivity())) {
-                googleMap.setMyLocationEnabled(true);
+                //googleMap.setMyLocationEnabled(true);
             } else {
                 // TODO: A toast saying they can interact with map without location turned on.
             }
             setAllMarkers(googleMap);
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPos, 15));
-            // TODO: Later, change startPos to be the current location.
         }
     };
 
@@ -64,7 +62,7 @@ public class MapFragment  extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        locationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        //locationClient = LocationServices.getFusedLocationProviderClient(getActivity());
         return inflater.inflate(R.layout.fragment_map, container, false);
     }
 
