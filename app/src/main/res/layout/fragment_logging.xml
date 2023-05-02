@@ -6,67 +6,23 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/foundWhereText"
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center"
+        android:textAlignment="center"
         android:textSize="20sp"
-        android:text="I found a sticker:" />
+        android:text="Did you find and remove a sticker?\nPress the button to put it on the map." />
 
-    <LinearLayout
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/foundButton"
+        app:cornerRadius="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="horizontal">
+        android:text="I removed a sticker"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/hereButton"
-            app:cornerRadius="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:text="Here"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/somewhereElseButton"
-            app:cornerRadius="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Somewhere else"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/removedText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:textSize="20sp"
-        android:text="I removed the sticker:" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/yesButton"
-            app:cornerRadius="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:text="Yes"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/noButton"
-            app:cornerRadius="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Not yet"/>
-
-    </LinearLayout>
 
 </LinearLayout>

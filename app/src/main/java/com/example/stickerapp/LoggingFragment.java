@@ -11,6 +11,8 @@ import android.os.Bundle;
 
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.os.Looper;
 import android.provider.Settings;
@@ -26,13 +28,14 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
 
 public class LoggingFragment extends Fragment {
 
-    private TextView foundWhereText;
-    private Button hereButton; private Button somewhereElseButton;
-    private TextView removedText;
-    private Button yesButton; private Button noButton;
+    private TextView text;
+    private Button foundButton;
+
+    StickerDB stickerDB;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,14 +47,27 @@ public class LoggingFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_logging, container, false);
 
-        foundWhereText = v.findViewById(R.id.foundWhereText);
-        hereButton = v.findViewById(R.id.hereButton);
-        somewhereElseButton = v.findViewById(R.id.somewhereElseButton);
-        removedText = v.findViewById(R.id.removedText);
-        yesButton = v.findViewById(R.id.yesButton); noButton = v.findViewById(R.id.noButton);
+        stickerDB= new ViewModelProvider(requireActivity()).get(StickerDB.class);
 
+        text = v.findViewById(R.id.text);
+        foundButton = v.findViewById(R.id.foundButton);
+
+        foundButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(getActivity(), "Sticker saved.", Toast.LENGTH_LONG).show();
+                stickerDB.addMarker(getRandomLatLng());
+                Navigation.findNavController(view).navigate(R.id.action_loggingFragment_to_countUpFragment);
+            }
+        });
 
         return v;
+    }
+
+    private LatLng getRandomLatLng() {
+        double lat = (double) ((Math.random() * (55.659225 - 55.652872)) + 55.652872);
+        double lng = (double) ((Math.random() * (12.595497 - 12.581437)) + 12.581437);
+        return new LatLng(lat, lng);
     }
 
 

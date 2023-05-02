@@ -3,6 +3,7 @@ package com.example.stickerapp;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -22,13 +23,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.sql.Date;
 
-public class MapFragment  extends Fragment
-{
+public class MapFragment  extends Fragment {
+
+    StickerDB stickerDB;
 
     String apiKey = BuildConfig.API_KEY;
     private static final int REQUEST_PERMISSION = 1;
     PermissionsHandler permissionsHandler = new PermissionsHandler();
-    //FusedLocationProviderClient locationClient;
 
     LatLng startPos = new LatLng(55.658619, 12.589548);
 
@@ -62,8 +63,10 @@ public class MapFragment  extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        //locationClient = LocationServices.getFusedLocationProviderClient(getActivity());
-        return inflater.inflate(R.layout.fragment_map, container, false);
+        View v = inflater.inflate(R.layout.fragment_map, container, false);
+
+        stickerDB = new ViewModelProvider(requireActivity()).get(StickerDB.class);
+        return v;
     }
 
     @Override
@@ -77,22 +80,12 @@ public class MapFragment  extends Fragment
     }
 
     public void setAllMarkers(GoogleMap googleMap) {
-        LatLng icecreamSticker = new LatLng(55.660505, 12.591268);
-        googleMap.addMarker(new MarkerOptions().position(icecreamSticker).title("A removed sticker").snippet("Removed on April 20th 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
-        // OBS: snippet can only be one-line it seems.
-        // TODO: Use this stackoverflow to fix it with InfoWindow: https://stackoverflow.com/questions/13904651/android-google-maps-v2-how-to-add-marker-with-multiline-snippet
-
-        LatLng metroSticker = new LatLng(55.655954,12.589270);
-        googleMap.addMarker(new MarkerOptions().position(metroSticker).title("A removed sticker").snippet("Removed on February 3rd 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
-
-        LatLng concertSticker = new LatLng(55.657839,12.589377);
-        googleMap.addMarker(new MarkerOptions().position(concertSticker).title("A removed sticker").snippet("Removed on May 2nd 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
-
-        LatLng jurSticker = new LatLng(55.661571,12.586713);
-        googleMap.addMarker(new MarkerOptions().position(jurSticker).title("A removed sticker").snippet("Removed on April 30th").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
+        for (LatLng pos : stickerDB.getMarkers()) {
+            googleMap.addMarker(new MarkerOptions().position(pos).title("A removed sticker").snippet("Removed on May 4th 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
+        }
     }
 
-    public void placeMarker(GoogleMap googleMap, double lat, double lng, Date date, boolean removed) {
+   /* public void placeMarker(GoogleMap googleMap, double lat, double lng, Date date, boolean removed) {
         LatLng stickerPos = new LatLng(lat, lng);
         String title = "A sticker";
         String snippet = "Please help remove this sticker if you can.";
@@ -103,5 +96,5 @@ public class MapFragment  extends Fragment
             opacity = 0.6f;
         }
         googleMap.addMarker(new MarkerOptions().position(stickerPos).title(title).snippet(snippet).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(opacity));
-    }
+    }*/
 }
