@@ -78,16 +78,18 @@ public class MapFragment  extends Fragment
 
     public void setAllMarkers(GoogleMap googleMap) {
         LatLng icecreamSticker = new LatLng(55.660505, 12.591268);
-        googleMap.addMarker(new MarkerOptions().position(icecreamSticker).title("A removed sticker").snippet("Removed on April 20th 2023"+"\n"+"A crew member says:"+"\n"+"'Go ITU anti-fascist sticker patrol! Wooo!'").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.6f));
+        googleMap.addMarker(new MarkerOptions().position(icecreamSticker).title("A removed sticker").snippet("Removed on April 20th 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
         // OBS: snippet can only be one-line it seems.
         // TODO: Use this stackoverflow to fix it with InfoWindow: https://stackoverflow.com/questions/13904651/android-google-maps-v2-how-to-add-marker-with-multiline-snippet
 
-
         LatLng metroSticker = new LatLng(55.655954,12.589270);
-        googleMap.addMarker(new MarkerOptions().position(metroSticker).title("A removed sticker").snippet("Removed on February 3rd 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.6f));
+        googleMap.addMarker(new MarkerOptions().position(metroSticker).title("A removed sticker").snippet("Removed on February 3rd 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
+
+        LatLng concertSticker = new LatLng(55.657839,12.589377);
+        googleMap.addMarker(new MarkerOptions().position(concertSticker).title("A removed sticker").snippet("Removed on May 2nd 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
 
         LatLng jurSticker = new LatLng(55.661571,12.586713);
-        googleMap.addMarker(new MarkerOptions().position(jurSticker).title("A sticker").snippet("Please help remove this sticker if you can.").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
+        googleMap.addMarker(new MarkerOptions().position(jurSticker).title("A removed sticker").snippet("Removed on April 30th").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
     }
 
     public void placeMarker(GoogleMap googleMap, double lat, double lng, Date date, boolean removed) {
