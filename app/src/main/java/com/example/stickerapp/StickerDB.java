@@ -29,7 +29,7 @@ public class StickerDB extends ViewModel {
         markers.add(latLng);
     }
 
-    public int size() {
+    public int getSize() {
         return markers.size();
     }
 
