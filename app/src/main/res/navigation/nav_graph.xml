@@ -37,10 +37,32 @@
         android:id="@+id/loggingFragment"
         android:name="com.example.stickerapp.LoggingFragment"
         android:label="fragment_logging"
-        tools:layout="@layout/fragment_logging" />
+        tools:layout="@layout/fragment_logging" >
+        <action
+            android:id="@+id/action_loggingFragment_to_debriefFragment"
+            app:destination="@id/debriefFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.example.stickerapp.MapFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/countUpFragment"
+        android:name="com.example.stickerapp.CountUpFragment"
+        android:label="fragment_count_up"
+        tools:layout="@layout/fragment_count_up" >
+        <action
+            android:id="@+id/action_countUpFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/debriefFragment"
+        android:name="com.example.stickerapp.DebriefFragment"
+        android:label="fragment_debrief"
+        tools:layout="@layout/fragment_debrief" >
+        <action
+            android:id="@+id/action_debriefFragment_to_countUpFragment"
+            app:destination="@id/countUpFragment" />
+    </fragment>
 </navigation>
