@@ -39,8 +39,8 @@
         android:label="fragment_logging"
         tools:layout="@layout/fragment_logging" >
         <action
-            android:id="@+id/action_loggingFragment_to_debriefFragment"
-            app:destination="@id/debriefFragment" />
+            android:id="@+id/action_loggingFragment_to_countUpFragment"
+            app:destination="@id/countUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
@@ -53,8 +53,8 @@
         android:label="fragment_count_up"
         tools:layout="@layout/fragment_count_up" >
         <action
-            android:id="@+id/action_countUpFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
+            android:id="@+id/action_countUpFragment_to_debriefFragment"
+            app:destination="@id/debriefFragment" />
     </fragment>
     <fragment
         android:id="@+id/debriefFragment"
@@ -62,7 +62,7 @@
         android:label="fragment_debrief"
         tools:layout="@layout/fragment_debrief" >
         <action
-            android:id="@+id/action_debriefFragment_to_countUpFragment"
-            app:destination="@id/countUpFragment" />
+            android:id="@+id/action_debriefFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
 </navigation>
