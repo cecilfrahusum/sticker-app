@@ -9,11 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class MenuFragment extends Fragment {
 
+    private TextView appTitle;
+    private TextView tagLine;
     private Button crewButton;
     private Button logStickerButton;
     private Button mapButton;
@@ -28,6 +31,8 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_menu, container, false);
 
+        appTitle = v.findViewById(R.id.appTitle);
+        tagLine = v.findViewById(R.id.tagLine);
         logStickerButton = v.findViewById(R.id.logStickerButton);
         mapButton = v.findViewById(R.id.mapButton);
         crewButton = v.findViewById(R.id.crewButton);

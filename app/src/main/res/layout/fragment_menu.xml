@@ -5,6 +5,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="30dp"
+        android:textSize="60sp"
+        android:text="Activist GO"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/tagLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="100dp"
+        android:textSize="20sp"
+        android:text="Team up with your friends.\n\nRemove fascist stickers from the streets and make your local area safer for everyone.\n\nIt might even be fun!"
+        android:textAlignment="center" />
+
     <Button
         android:id="@+id/logStickerButton"
         android:layout_gravity="center"
