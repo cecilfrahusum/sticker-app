@@ -59,8 +59,12 @@ public class LoggingFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(getActivity(), "Sticker saved.", Toast.LENGTH_LONG).show();
-                stickerDB.addMarker(getRandomLatLng(), shoutBox.getText().toString());
-                Navigation.findNavController(view).navigate(R.id.action_loggingFragment_to_countUpFragment);
+                if (shoutBox.getText().toString().length() > 37) {
+                    Toast.makeText(getActivity(), "Please no more than 37 characters, this prototype was finished last night, sorry !!", Toast.LENGTH_LONG).show();
+                } else {
+                    stickerDB.addMarker(getRandomLatLng(), shoutBox.getText().toString());
+                    Navigation.findNavController(view).navigate(R.id.action_loggingFragment_to_countUpFragment);
+                }
             }
         });
 
