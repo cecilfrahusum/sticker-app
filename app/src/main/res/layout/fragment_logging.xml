@@ -10,11 +10,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:layout_gravity="center"
         android:textAlignment="center"
         android:textSize="20sp"
         android:text="Did you find and remove a sticker?\nPress the button to put it on the map." />
+
+    <EditText
+        android:id="@+id/shoutBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp"
+        android:hint="Optional: Write a shout for your crew here. Tell them that they're doing great, or leave a political statement if you'd like.\n(Max 30 characters)"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/foundButton"

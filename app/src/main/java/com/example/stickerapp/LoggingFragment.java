@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ import com.google.android.gms.maps.model.LatLng;
 public class LoggingFragment extends Fragment {
 
     private TextView text;
+    private EditText shoutBox;
     private Button foundButton;
 
     StickerDB stickerDB;
@@ -50,13 +52,14 @@ public class LoggingFragment extends Fragment {
         stickerDB= new ViewModelProvider(requireActivity()).get(StickerDB.class);
 
         text = v.findViewById(R.id.text);
+        shoutBox = v.findViewById(R.id.shoutBox);
         foundButton = v.findViewById(R.id.foundButton);
 
         foundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(getActivity(), "Sticker saved.", Toast.LENGTH_LONG).show();
-                stickerDB.addMarker(getRandomLatLng());
+                stickerDB.addMarker(getRandomLatLng(), shoutBox.getText().toString());
                 Navigation.findNavController(view).navigate(R.id.action_loggingFragment_to_countUpFragment);
             }
         });

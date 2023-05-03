@@ -80,8 +80,8 @@ public class MapFragment  extends Fragment {
     }
 
     public void setAllMarkers(GoogleMap googleMap) {
-        for (LatLng pos : stickerDB.getMarkers()) {
-            googleMap.addMarker(new MarkerOptions().position(pos).title("A removed sticker").snippet("Removed on May 4th 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
+        for (Sticker sticker : stickerDB.getMarkers()) {
+            googleMap.addMarker(new MarkerOptions().position(sticker.getPos()).title("Sticker removed on May 4th 2023").snippet("A crew mate says: '" + sticker.getMessage() + "'").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
         }
     }
 
