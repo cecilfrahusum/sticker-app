@@ -81,7 +81,11 @@ public class MapFragment  extends Fragment {
 
     public void setAllMarkers(GoogleMap googleMap) {
         for (Sticker sticker : stickerDB.getMarkers()) {
-            googleMap.addMarker(new MarkerOptions().position(sticker.getPos()).title("Sticker removed on May 4th 2023").snippet("A crew mate says: '" + sticker.getMessage() + "'").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
+            String shout = "";
+            if (sticker.getMessage().length() > 0) {
+                shout = "A crew mate says: '" + sticker.getMessage() + "'";
+            }
+            googleMap.addMarker(new MarkerOptions().position(sticker.getPos()).title("Sticker removed on May 4th 2023").snippet(shout).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
         }
     }
 
