@@ -15,10 +15,10 @@ public class StickerDB extends ViewModel {
         LatLng metroSticker = new LatLng(55.655954,12.589270);
         LatLng concertSticker = new LatLng(55.657839,12.589377);
         LatLng jurSticker = new LatLng(55.661571,12.586713);
-        markers.add(new Sticker(icecreamSticker, "test"));
-        markers.add(new Sticker(metroSticker, "test"));
-        markers.add(new Sticker(concertSticker, "test"));
-        markers.add(new Sticker(jurSticker, "test"));
+        markers.add(new Sticker(icecreamSticker, "Go ITU anti-fascist sticker patrol!"));
+        markers.add(new Sticker(metroSticker, "Smash the patriarchy"));
+        markers.add(new Sticker(concertSticker, "Let's remove this nazi crap please"));
+        markers.add(new Sticker(jurSticker, "Another gross sticker, boo!"));
     }
 
     public List<Sticker> getMarkers() {
