@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
         android:textSize="20sp"
-        android:text="Well done!\nWith your help, your crew has now\nremoved a total of:"
+        android:text="Well done!\n\nWith your help, your crew has now\nremoved a total of:"
         android:textAlignment="center"/>
 
     <TextView

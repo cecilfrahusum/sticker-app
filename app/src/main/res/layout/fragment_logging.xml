@@ -24,7 +24,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
         android:textSize="20sp"
-        android:hint="Optional: Write a shout for your crew here. Tell them that they're doing great, or leave a political statement if you'd like.\n(Max 30 characters)"/>
+        android:hint="Optional: Write a shout for your crew here. Tell them that they're doing a great job, or leave a political statement if you'd like.\n(Max 30 characters)"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/foundButton"
