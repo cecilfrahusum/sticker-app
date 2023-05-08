@@ -85,7 +85,7 @@ public class MapFragment  extends Fragment {
             if (sticker.getMessage().length() > 0) {
                 shout = "A crew mate says: '" + sticker.getMessage() + "'";
             }
-            googleMap.addMarker(new MarkerOptions().position(sticker.getPos()).title("Sticker removed on May 4th 2023").snippet(shout).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
+            googleMap.addMarker(new MarkerOptions().position(sticker.getPos()).title("Sticker removed on" + sticker.getDate().toString()).snippet(shout).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
         }
     }
 

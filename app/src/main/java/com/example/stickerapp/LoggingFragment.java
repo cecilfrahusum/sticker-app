@@ -31,6 +31,8 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.Date;
+
 public class LoggingFragment extends Fragment {
 
     private TextView text;
@@ -62,7 +64,7 @@ public class LoggingFragment extends Fragment {
                 if (shoutBox.getText().toString().length() > 37) {
                     Toast.makeText(getActivity(), "Please no more than 37 characters, this prototype was finished last night, sorry !!", Toast.LENGTH_LONG).show();
                 } else {
-                    stickerDB.addMarker(getRandomLatLng(), shoutBox.getText().toString());
+                    stickerDB.addMarker(getRandomLatLng(), shoutBox.getText().toString(), new Date());
                     Navigation.findNavController(view).navigate(R.id.action_loggingFragment_to_countUpFragment);
                 }
             }
