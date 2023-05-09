@@ -79,6 +79,6 @@ public class LoggingFragment extends Fragment {
         return new LatLng(lat, lng);
     }
 
-
+// testing..
 
 }
