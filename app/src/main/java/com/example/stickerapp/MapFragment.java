@@ -30,6 +30,7 @@ public class MapFragment  extends Fragment {
     String apiKey = BuildConfig.API_KEY;
     private static final int REQUEST_PERMISSION = 1;
     PermissionsHandler permissionsHandler = new PermissionsHandler();
+    FusedLocationProviderClient locationClient;
 
     LatLng startPos = new LatLng(55.658619, 12.589548);
 
@@ -49,12 +50,13 @@ public class MapFragment  extends Fragment {
         public void onMapReady(GoogleMap googleMap) {
             permissionsHandler.requestPermissions(getActivity(), REQUEST_PERMISSION);
             if (permissionsHandler.hasPermissions(getActivity())) {
-                //googleMap.setMyLocationEnabled(true);
+                googleMap.setMyLocationEnabled(true);
+                setAllMarkers(googleMap);
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPos, 15));
             } else {
-                // TODO: A toast saying they can interact with map without location turned on.
+                //TODO: What happens if user does not give location permissions?
             }
-            setAllMarkers(googleMap);
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPos, 15));
+            //TODO: change startPos to be the current location.
         }
     };
 
@@ -64,8 +66,8 @@ public class MapFragment  extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_map, container, false);
-
         stickerDB = new ViewModelProvider(requireActivity()).get(StickerDB.class);
+        locationClient = LocationServices.getFusedLocationProviderClient(getActivity());
         return v;
     }
 
@@ -96,7 +98,7 @@ public class MapFragment  extends Fragment {
         float opacity = 1;
         if (removed) {
             title = "A removed sticker";
-            snippet = "Sticker removed on XX date"; //TODO: add actual date
+            snippet = "Sticker removed on XX date";
             opacity = 0.6f;
         }
         googleMap.addMarker(new MarkerOptions().position(stickerPos).title(title).snippet(snippet).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(opacity));
