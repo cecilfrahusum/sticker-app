@@ -40,7 +40,9 @@
         tools:layout="@layout/fragment_logging" >
         <action
             android:id="@+id/action_loggingFragment_to_countUpFragment"
-            app:destination="@id/countUpFragment" />
+            app:destination="@id/countUpFragment"
+            app:popUpTo="@id/menuFragment"
+            app:popUpToInclusive="false"/>
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
@@ -54,7 +56,9 @@
         tools:layout="@layout/fragment_count_up" >
         <action
             android:id="@+id/action_countUpFragment_to_debriefFragment"
-            app:destination="@id/debriefFragment" />
+            app:destination="@id/debriefFragment"
+            app:popUpTo="@id/menuFragment"
+            app:popUpToInclusive="false"/>
     </fragment>
     <fragment
         android:id="@+id/debriefFragment"
