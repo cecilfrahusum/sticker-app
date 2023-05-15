@@ -20,6 +20,7 @@ public class MenuFragment extends Fragment {
     private Button crewButton;
     private Button logStickerButton;
     private Button mapButton;
+    private Button safetyInfoButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class MenuFragment extends Fragment {
         logStickerButton = v.findViewById(R.id.logStickerButton);
         mapButton = v.findViewById(R.id.mapButton);
         crewButton = v.findViewById(R.id.crewButton);
+        safetyInfoButton = v.findViewById(R.id.safetyInfoButton);
 
         logStickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +57,13 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.action_menuFragment_to_crewFragment);
+            }
+        });
+
+        safetyInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_menuFragment_to_safetyFragment);
             }
         });
 

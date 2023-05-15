@@ -53,14 +53,14 @@
         android:layout_marginBottom="5dp"
         android:text="My crew"/>
 
-    <!--<Button
+    <Button
         android:id="@+id/safetyInfoButton"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_marginBottom="5dp"
-        android:text="Safety tips"/>-->
+        android:text="Safety info"/>
 
 
 </LinearLayout>
