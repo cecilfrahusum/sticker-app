@@ -8,6 +8,10 @@ import java.util.Locale;
 
 public class Sticker {
 
+    /* Note:
+     I am sticking with the old 'Date' type instead of newer
+     LocalDate, because LocalDate only works on sdk 26 and up. */
+
     private LatLng latLng;
     private String message;
     private Date date;
