@@ -20,6 +20,9 @@ public class MenuFragment extends Fragment {
     private Button mapButton;
     private Button safetyInfoButton;
 
+    PermissionsHandler permissionsHandler = new PermissionsHandler();
+    private static final int REQUEST_PERMISSION = 1;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,8 @@ public class MenuFragment extends Fragment {
         mapButton = v.findViewById(R.id.mapButton);
         crewButton = v.findViewById(R.id.crewButton);
         safetyInfoButton = v.findViewById(R.id.safetyInfoButton);
+
+        permissionsHandler.requestPermissions(getActivity(), REQUEST_PERMISSION);
 
         logStickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
