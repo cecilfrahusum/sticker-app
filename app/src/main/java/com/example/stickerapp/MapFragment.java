@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 
 import com.google.android.gms.location.LocationServices;
@@ -20,34 +22,51 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import java.sql.Date;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 public class MapFragment  extends Fragment {
 
     StickerDB stickerDB;
 
     String apiKey = BuildConfig.API_KEY;
-    private static final int REQUEST_PERMISSION = 1;
     PermissionsHandler permissionsHandler = new PermissionsHandler();
     FusedLocationProviderClient locationClient;
 
-    LatLng startPos = new LatLng(55.658619, 12.589548);
+    LatLng defaultLocation = new LatLng(55.658619, 12.589548);
+    private final static int DEFAULT_ZOOM = 15;
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         @SuppressLint("MissingPermission")
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            permissionsHandler.requestPermissions(getActivity(), REQUEST_PERMISSION);
+            setAllMarkers(googleMap);
             if (permissionsHandler.hasPermissions(getActivity())) {
+                // This bit is based on: https://developers.google.com/maps/documentation/android-sdk/current-place-tutorial#java_7
+                // Please refactor it later.
+                Task<Location> locationResult = locationClient.getLastLocation();
+                locationResult.addOnCompleteListener(getActivity(), new OnCompleteListener<Location>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Location> lastLocationTask) {
+                        if (lastLocationTask.isSuccessful()) {
+                            Location lastKnownLocation = lastLocationTask.getResult();
+                            if (lastKnownLocation != null) {
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                                        new LatLng(lastKnownLocation.getLatitude(),
+                                                lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+                            } //TODO: else-statement to ask for location ???
+                        } else {
+                            googleMap.moveCamera(CameraUpdateFactory
+                                    .newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
+                        }
+                    }
+                });
                 googleMap.setMyLocationEnabled(true);
-                setAllMarkers(googleMap);
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPos, 15));
             } else {
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
                 //TODO: What happens if user does not give location permissions?
             }
-            //TODO: change startPos to be the current location.
         }
     };
 
