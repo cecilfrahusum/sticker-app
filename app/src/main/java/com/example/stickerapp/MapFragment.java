@@ -3,6 +3,7 @@ package com.example.stickerapp;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -22,8 +23,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.sql.Date;
 
-public class MapFragment  extends Fragment
-{
+public class MapFragment  extends Fragment {
+
+    StickerDB stickerDB;
 
     String apiKey = BuildConfig.API_KEY;
     private static final int REQUEST_PERMISSION = 1;
@@ -31,7 +33,6 @@ public class MapFragment  extends Fragment
     FusedLocationProviderClient locationClient;
 
     LatLng startPos = new LatLng(55.658619, 12.589548);
-    //TODO: startPos should be latest known location of the user.
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -50,12 +51,12 @@ public class MapFragment  extends Fragment
             permissionsHandler.requestPermissions(getActivity(), REQUEST_PERMISSION);
             if (permissionsHandler.hasPermissions(getActivity())) {
                 googleMap.setMyLocationEnabled(true);
+                setAllMarkers(googleMap);
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPos, 15));
             } else {
-                // TODO: A toast saying they can interact with map without location turned on.
+                //TODO: What happens if user does not give location permissions?
             }
-            setAllMarkers(googleMap);
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPos, 15));
-            // TODO: Later, change startPos to be the current location.
+            //TODO: change startPos to be the current location.
         }
     };
 
@@ -64,8 +65,10 @@ public class MapFragment  extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_map, container, false);
+        stickerDB = new ViewModelProvider(requireActivity()).get(StickerDB.class);
         locationClient = LocationServices.getFusedLocationProviderClient(getActivity());
-        return inflater.inflate(R.layout.fragment_map, container, false);
+        return v;
     }
 
     @Override
@@ -79,26 +82,25 @@ public class MapFragment  extends Fragment
     }
 
     public void setAllMarkers(GoogleMap googleMap) {
-        LatLng icecreamSticker = new LatLng(55.660505, 12.591268);
-        googleMap.addMarker(new MarkerOptions().position(icecreamSticker).title("A removed sticker").snippet("Removed on April 20th 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.6f));
-
-        LatLng metroSticker = new LatLng(55.655954,12.589270);
-        googleMap.addMarker(new MarkerOptions().position(metroSticker).title("A removed sticker").snippet("Removed on February 3rd 2023").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.6f));
-
-        LatLng jurSticker = new LatLng(55.661571,12.586713);
-        googleMap.addMarker(new MarkerOptions().position(jurSticker).title("A sticker").snippet("Please help remove this sticker if you can.").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
+        for (Sticker sticker : stickerDB.getMarkers()) {
+            String shout = "";
+            if (sticker.getMessage().length() > 0) {
+                shout = "A crew mate says: '" + sticker.getMessage() + "'";
+            }
+            googleMap.addMarker(new MarkerOptions().position(sticker.getPos()).title("Sticker removed on " + sticker.getDateString()).snippet(shout).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
+        }
     }
 
-    public void placeMarker(GoogleMap googleMap, double lat, double lng, Date date, boolean removed) {
+   /* public void placeMarker(GoogleMap googleMap, double lat, double lng, Date date, boolean removed) {
         LatLng stickerPos = new LatLng(lat, lng);
         String title = "A sticker";
         String snippet = "Please help remove this sticker if you can.";
         float opacity = 1;
         if (removed) {
             title = "A removed sticker";
-            snippet = "Sticker removed on XX date"; //TODO: add actual date
+            snippet = "Sticker removed on XX date";
             opacity = 0.6f;
         }
         googleMap.addMarker(new MarkerOptions().position(stickerPos).title(title).snippet(snippet).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(opacity));
-    }
+    }*/
 }

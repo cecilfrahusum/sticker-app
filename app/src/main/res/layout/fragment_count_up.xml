@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <TextView
@@ -11,7 +12,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
         android:textSize="20sp"
-        android:text="Your crew \n'ITU anti-fascist sticker patrol'\nhas removed:"
+        android:text="Well done!\n\nWith your help, your crew has now\nremoved a total of:"
         android:textAlignment="center"/>
 
     <TextView
@@ -21,8 +22,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:textSize="100sp"
-        android:text="0"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:text="87" />
 
     <TextView
         android:id="@+id/counterSuffix"
@@ -30,10 +31,18 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="80dp"
         android:textSize="20sp"
         android:textAlignment="center"
-        android:text="stickers so far.\n \nGo you!" />
+        android:text="stickers!" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/goButton"
+        app:cornerRadius="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Woo, go team!"/>
 
 
 </LinearLayout>

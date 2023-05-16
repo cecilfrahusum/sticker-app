@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/debriefText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="50dp"
+        android:textSize="20sp"
+        android:text="Now, please take a deep breath.\n\nIf you want, you can go for a walk around the area to check for more stickers.\nOr you could do that some other day.\n\nEither way, good job making the local area a bit safer for us all!"
+        android:textAlignment="center" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/homeButton"
+        app:cornerRadius="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Deep breath done!"/>
+
+</LinearLayout>

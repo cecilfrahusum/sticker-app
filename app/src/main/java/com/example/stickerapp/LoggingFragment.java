@@ -11,6 +11,8 @@ import android.os.Bundle;
 
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.os.Looper;
 import android.provider.Settings;
@@ -18,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,18 +29,17 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.Date;
 
 public class LoggingFragment extends Fragment {
 
-    private static final int REQUEST_PERMISSION = 1;
-    PermissionsHandler permissionsHandler = new PermissionsHandler();
-    FusedLocationProviderClient locationClient;
+    private TextView text;
+    private EditText shoutBox;
+    private Button foundButton;
 
-    private TextView foundWhereText;
-    private Button hereButton; private Button somewhereElseButton;
-    private TextView removedText;
-    private Button yesButton; private Button noButton;
-    private Button locationButton;
+    StickerDB stickerDB;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,21 +51,21 @@ public class LoggingFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_logging, container, false);
 
-        locationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        stickerDB= new ViewModelProvider(requireActivity()).get(StickerDB.class);
 
-        foundWhereText = v.findViewById(R.id.foundWhereText);
-        hereButton = v.findViewById(R.id.hereButton);
-        somewhereElseButton = v.findViewById(R.id.somewhereElseButton);
-        removedText = v.findViewById(R.id.removedText);
-        yesButton = v.findViewById(R.id.yesButton); noButton = v.findViewById(R.id.noButton);
-        locationButton = v.findViewById(R.id.locationButton);
+        text = v.findViewById(R.id.text);
+        shoutBox = v.findViewById(R.id.shoutBox);
+        foundButton = v.findViewById(R.id.foundButton);
 
-        locationButton.setOnClickListener(new View.OnClickListener() {
+        foundButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                permissionsHandler.requestPermissions(getActivity(), REQUEST_PERMISSION);
-                if (permissionsHandler.hasPermissions(getActivity())) {
-                    getLastLocation();
+                //Toast.makeText(getActivity(), "Sticker saved.", Toast.LENGTH_LONG).show();
+                if (shoutBox.getText().toString().length() > 37) {
+                    Toast.makeText(getActivity(), "Please no more than 37 characters, this prototype was finished last night, sorry !!", Toast.LENGTH_LONG).show();
+                } else {
+                    stickerDB.addMarker(getRandomLatLng(), shoutBox.getText().toString(), new Date());
+                    Navigation.findNavController(view).navigate(R.id.action_loggingFragment_to_countUpFragment);
                 }
             }
         });
@@ -71,87 +73,12 @@ public class LoggingFragment extends Fragment {
         return v;
     }
 
-    private boolean isLocationEnabled() {
-        LocationManager locationManager= (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+    private LatLng getRandomLatLng() {
+        double lat = (double) ((Math.random() * (55.659225 - 55.652872)) + 55.652872);
+        double lng = (double) ((Math.random() * (12.595497 - 12.581437)) + 12.581437);
+        return new LatLng(lat, lng);
     }
 
-    @SuppressLint("MissingPermission")  // necessary
-    private void getLastLocation() {
-        // check if permissions are given
-        if (checkPermissions()) {
-            // check if location is enabled
-            if (isLocationEnabled()) {
-                locationClient.getLastLocation().addOnCompleteListener(task -> {
-                    Location location = task.getResult();
-                    if (location == null) {
-                        requestNewLocationData();
-                    } else {
-                        //latitude.setText("Latitude.   : "+location.getLatitude());
-                        //longitude.setText("Longitude.: "+location.getLongitude());
-                        Toast.makeText(getActivity(), "Your latitude: " + location.getLatitude(), Toast.LENGTH_LONG).show();
-                    }
-                });
-            } else {
-                Toast.makeText(getActivity(), "Please turn on" + " your location...", Toast.LENGTH_LONG).show();
-                Intent intent= new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(intent);
-            }
-        } else {
-            requestPermissions();
-        }
-    }
-
-    @SuppressLint("MissingPermission")
-    private void requestNewLocationData() {
-
-        LocationRequest mLocationRequest= LocationRequest.create()
-                .setInterval(5)
-                .setFastestInterval(0)
-                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                .setNumUpdates(1);
-
-        locationClient = LocationServices.getFusedLocationProviderClient(getActivity());
-        locationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
-    }
-
-    private final LocationCallback mLocationCallback= new LocationCallback() {
-
-        @Override
-        public void onLocationResult(LocationResult locationResult) {
-            Location mLastLocation= locationResult.getLastLocation();
-            //latitude.setText("Latitude: " + mLastLocation.getLatitude() + "");
-            //longitude.setText("Longitude: " + mLastLocation.getLongitude() + "");
-        }
-    };
-
-    private boolean checkPermissions() {
-        return ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
-    }
-
-    private void requestPermissions() {
-        ActivityCompat.requestPermissions(getActivity(), new String[]{
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_PERMISSION);
-    }
-
-    /*@Override
-    public void
-    onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == REQUEST_PERMISSION) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getLastLocation();
-            }
-        }
-    }*/
-
-    //TODO: Put this back in later after refactoring
-   /* @Override
-    public void onResume() {
-        super.onResume();
-        if (checkPermissions()) {  getLastLocation();   }
-    }*/
+// testing..
 
 }

@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SafetyFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="This is the safety info fragment" />
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
+        android:textSize="40sp"
+        android:text="SAFETY\nfor\nACTIVISTS"
+        android:textAlignment="center" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="60dp"
+        android:textSize="20sp"
+        android:text="1. This app is not encrypted!\nDo not use this app for any sensitive communication. \n\n2. Only invite people you know and trust to join your Activist GO crew.\n\n3. Be aware that some fascist groups are dangerous.\nConsider the risks and take any necessary precautions when removing stickers."
+        android:textAlignment="center" />
+
+   <!-- <TextView
+        android:id="@+id/moreInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:text="More info:  this link   and this link"
+        android:textAlignment="center" />-->
+
+</LinearLayout>

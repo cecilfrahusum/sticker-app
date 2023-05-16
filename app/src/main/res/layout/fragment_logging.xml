@@ -6,74 +6,33 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/foundWhereText"
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
+        android:layout_marginBottom="20dp"
         android:layout_gravity="center"
+        android:textAlignment="center"
         android:textSize="20sp"
-        android:text="I found a sticker:" />
+        android:text="Did you find and remove a sticker?\nPress the button to put it on the map." />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/shoutBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text=""
         android:layout_gravity="center"
-        android:orientation="horizontal">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/hereButton"
-            app:cornerRadius="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:text="Here"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/somewhereElseButton"
-            app:cornerRadius="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Somewhere else"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/removedText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginBottom="10dp"
         android:textSize="20sp"
-        android:text="I removed the sticker:" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/yesButton"
-            app:cornerRadius="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:text="Yes"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/noButton"
-            app:cornerRadius="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Not yet"/>
-
-    </LinearLayout>
+        android:hint="Optional: Write a shout for your crew here. Tell them that they're doing a great job, or leave a political statement if you'd like.\n(Max 30 characters)"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/locationButton"
+        android:id="@+id/foundButton"
         app:cornerRadius="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get location (test)"/>
+        android:layout_gravity="center"
+        android:text="I removed a sticker"/>
+
 
 </LinearLayout>
