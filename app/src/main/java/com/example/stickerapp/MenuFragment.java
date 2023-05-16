@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 public class MenuFragment extends Fragment {
 
@@ -66,7 +64,6 @@ public class MenuFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_menuFragment_to_safetyFragment);
             }
         });
-
 
         return v;
     }

@@ -36,15 +36,6 @@ public class MapFragment  extends Fragment {
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
-
         @SuppressLint("MissingPermission")
         @Override
         public void onMapReady(GoogleMap googleMap) {
@@ -91,16 +82,4 @@ public class MapFragment  extends Fragment {
         }
     }
 
-   /* public void placeMarker(GoogleMap googleMap, double lat, double lng, Date date, boolean removed) {
-        LatLng stickerPos = new LatLng(lat, lng);
-        String title = "A sticker";
-        String snippet = "Please help remove this sticker if you can.";
-        float opacity = 1;
-        if (removed) {
-            title = "A removed sticker";
-            snippet = "Sticker removed on XX date";
-            opacity = 0.6f;
-        }
-        googleMap.addMarker(new MarkerOptions().position(stickerPos).title(title).snippet(snippet).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(opacity));
-    }*/
 }
