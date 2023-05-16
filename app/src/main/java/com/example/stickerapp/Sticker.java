@@ -4,13 +4,14 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Sticker {
 
     private LatLng latLng;
     private String message;
     private Date date;
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd MM yyyy");
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
 
     public Sticker(LatLng latLng, String message, Date date) {
         this.latLng = latLng;
