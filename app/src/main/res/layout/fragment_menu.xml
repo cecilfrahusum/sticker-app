@@ -13,6 +13,8 @@
         android:layout_marginTop="65dp"
         android:layout_marginBottom="30dp"
         android:textSize="60sp"
+        android:textColor="@color/purple_500"
+        android:textStyle="bold"
         android:text="Activist GO"
         android:textAlignment="center" />
 
@@ -22,6 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="60dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:textSize="20sp"
         android:text="Team up with your friends.\n\nRemove fascist stickers from the streets and make your local area safer for everyone.\n\nIt might even be fun!"
         android:textAlignment="center" />

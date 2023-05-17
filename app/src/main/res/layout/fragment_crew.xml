@@ -21,6 +21,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:textSize="100sp"
+        android:textColor="@color/purple_500"
+        android:textStyle="bold"
         android:text="0"
         android:textAlignment="center"/>
 
@@ -32,8 +34,6 @@
         android:layout_marginTop="10dp"
         android:textSize="20sp"
         android:textAlignment="center"
-        android:text="stickers so far.\n \nGo you!" />
-
-
+        android:text="stickers so far.\n\n\n\nGo you!" />
 
 </LinearLayout>

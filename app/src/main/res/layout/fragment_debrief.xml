@@ -12,6 +12,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:textSize="20sp"
         android:text="Now, please take a deep breath.\n\nIf you want, you can go for a walk around the area to check for more stickers.\nOr you could do that some other day.\n\nEither way, good job making the local area a bit safer for us all!"
         android:textAlignment="center" />
