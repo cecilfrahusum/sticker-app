@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Date;
@@ -25,6 +27,8 @@ public class LoggingFragment extends Fragment {
     private Button foundButton;
 
     StickerDB stickerDB;
+    PermissionsHandler permissionsHandler = new PermissionsHandler();
+    FusedLocationProviderClient locationClient;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,7 @@ public class LoggingFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_logging, container, false);
 
         stickerDB= new ViewModelProvider(requireActivity()).get(StickerDB.class);
+        locationClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
         text = v.findViewById(R.id.text);
         shoutBox = v.findViewById(R.id.shoutBox);
@@ -61,5 +66,9 @@ public class LoggingFragment extends Fragment {
         double lng = (double) ((Math.random() * (12.595497 - 12.581437)) + 12.581437);
         return new LatLng(lat, lng);
     }
+
+   /* private LatLng getCurrentLatLng() {
+        return new LatLng();
+    }*/
 
 }
