@@ -27,17 +27,16 @@ import com.google.android.gms.tasks.Task;
 
 public class MapFragment  extends Fragment {
 
-    StickerDB stickerDB;
+    private String apiKey = BuildConfig.API_KEY;
 
-    String apiKey = BuildConfig.API_KEY;
-    PermissionsHandler permissionsHandler = new PermissionsHandler();
-    FusedLocationProviderClient locationClient;
+    private StickerDB stickerDB;
+    private PermissionsHandler permissionsHandler = new PermissionsHandler();
+    private FusedLocationProviderClient locationClient;
 
-    LatLng defaultLocation = new LatLng(55.658619, 12.589548);
+    private LatLng defaultLocation = new LatLng(55.658619, 12.589548);
     private final static int DEFAULT_ZOOM = 15;
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
-
         @SuppressLint("MissingPermission")
         @Override
         public void onMapReady(GoogleMap googleMap) {
@@ -97,7 +96,7 @@ public class MapFragment  extends Fragment {
             if (sticker.getMessage().length() > 0) {
                 shout = "A crew mate says: '" + sticker.getMessage() + "'";
             }
-            googleMap.addMarker(new MarkerOptions().position(sticker.getPos()).title("Sticker removed on " + sticker.getDateString()).snippet(shout).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
+            googleMap.addMarker(new MarkerOptions().position(sticker.getLatLng()).title("Sticker removed on " + sticker.getDateString()).snippet(shout).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)).alpha(0.4f));
         }
     }
 

@@ -12,6 +12,7 @@ public class StickerDB extends ViewModel {
     private final List<Sticker> markers = new ArrayList<>();
 
     public StickerDB() {
+        // Adding some hardcoded stickers for the prototype version.
         LatLng icecreamSticker = new LatLng(55.660505, 12.591268);
         LatLng metroSticker = new LatLng(55.655954,12.589270);
         LatLng concertSticker = new LatLng(55.657839,12.589377);

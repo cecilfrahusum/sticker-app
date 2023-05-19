@@ -20,7 +20,7 @@ public class MenuFragment extends Fragment {
     private Button mapButton;
     private Button safetyInfoButton;
 
-    PermissionsHandler permissionsHandler = new PermissionsHandler();
+    private PermissionsHandler permissionsHandler = new PermissionsHandler();
     private static final int REQUEST_PERMISSION = 1;
 
     @Override

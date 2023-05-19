@@ -26,7 +26,6 @@ public class DebriefFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_debrief, container, false);
 
-
         debriefText = v.findViewById(R.id.debriefText);
         homeButton = v.findViewById(R.id.homeButton);
 

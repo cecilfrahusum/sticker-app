@@ -23,7 +23,7 @@ public class Sticker {
         this.date = date;
     }
 
-    public LatLng getPos() {
+    public LatLng getLatLng() {
         return latLng;
     }
 

@@ -16,7 +16,7 @@ public class CrewFragment extends Fragment {
     private TextView counter;
     private TextView counterSuffix;
 
-    StickerDB stickerDB;
+    private StickerDB stickerDB;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,6 @@ public class CrewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_crew, container, false);
-
         stickerDB= new ViewModelProvider(requireActivity()).get(StickerDB.class);
 
         counterPrefix = v.findViewById(R.id.counterPrefix);

@@ -13,7 +13,6 @@ public class SafetyFragment extends Fragment {
 
     private TextView header;
     private TextView list;
-    //private TextView moreInfo;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,7 +26,6 @@ public class SafetyFragment extends Fragment {
 
         header = v.findViewById(R.id.header);
         list = v.findViewById(R.id.list);
-        //moreInfo = v.findViewById(R.id.moreInfo);
 
         return v;
     }

@@ -26,9 +26,9 @@ public class LoggingFragment extends Fragment {
     private EditText shoutBox;
     private Button foundButton;
 
-    StickerDB stickerDB;
-    PermissionsHandler permissionsHandler = new PermissionsHandler();
-    FusedLocationProviderClient locationClient;
+    private StickerDB stickerDB;
+    private PermissionsHandler permissionsHandler = new PermissionsHandler();
+    private FusedLocationProviderClient locationClient;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,6 @@ public class LoggingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_logging, container, false);
-
         stickerDB= new ViewModelProvider(requireActivity()).get(StickerDB.class);
         locationClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
@@ -61,14 +60,12 @@ public class LoggingFragment extends Fragment {
         return v;
     }
 
+    /* Returns a random LatLng coordinate, specifically within a short distance
+    * of the IT University. Used for playtesting purposes. */
     private LatLng getRandomLatLng() {
         double lat = (double) ((Math.random() * (55.659225 - 55.652872)) + 55.652872);
         double lng = (double) ((Math.random() * (12.595497 - 12.581437)) + 12.581437);
         return new LatLng(lat, lng);
     }
-
-   /* private LatLng getCurrentLatLng() {
-        return new LatLng();
-    }*/
 
 }
