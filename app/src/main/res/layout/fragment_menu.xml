@@ -70,5 +70,4 @@
         android:layout_marginBottom="5dp"
         android:text="Safety info"/>
 
-
 </LinearLayout>

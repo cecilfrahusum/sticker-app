@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <TextView
@@ -27,14 +26,5 @@
         android:textSize="20sp"
         android:text="1. This app is not encrypted!\nDo not use this app for any sensitive communication. \n\n2. Only invite people you know and trust to join your Activist GO crew.\n\n3. Be aware that some fascist groups are dangerous.\nConsider the risks and take any necessary precautions when removing stickers."
         android:textAlignment="center" />
-
-   <!-- <TextView
-        android:id="@+id/moreInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="20sp"
-        android:text="More info:  this link   and this link"
-        android:textAlignment="center" />-->
 
 </LinearLayout>
