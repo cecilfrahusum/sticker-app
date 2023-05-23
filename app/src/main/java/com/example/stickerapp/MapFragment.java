@@ -41,30 +41,10 @@ public class MapFragment  extends Fragment {
         @Override
         public void onMapReady(GoogleMap googleMap) {
             setAllMarkers(googleMap);
+            googleMap.moveCamera(CameraUpdateFactory
+                    .newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
             if (permissionsHandler.hasPermissions(getActivity())) {
-                // This bit is based on: https://developers.google.com/maps/documentation/android-sdk/current-place-tutorial#java_7
-                // Please refactor it later.
-                Task<Location> locationResult = locationClient.getLastLocation();
-                locationResult.addOnCompleteListener(getActivity(), new OnCompleteListener<Location>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Location> lastLocationTask) {
-                        if (lastLocationTask.isSuccessful()) {
-                            Location lastKnownLocation = lastLocationTask.getResult();
-                            if (lastKnownLocation != null) {
-                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                        new LatLng(lastKnownLocation.getLatitude(),
-                                                lastKnownLocation.getLongitude()), DEFAULT_ZOOM));
-                            } //TODO: else-statement to ask for location ???
-                        } else {
-                            googleMap.moveCamera(CameraUpdateFactory
-                                    .newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
-                        }
-                    }
-                });
                 googleMap.setMyLocationEnabled(true);
-            } else {
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, DEFAULT_ZOOM));
-                //TODO: What happens if user does not give location permissions?
             }
         }
     };
